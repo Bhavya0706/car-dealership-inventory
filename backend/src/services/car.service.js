@@ -5,8 +5,38 @@ const createCar = async (carData) => {
     return car;
 };
 
-const getAllCars = async () => {
-    const cars = await Car.find().sort({ createdAt: -1 });
+const getAllCars = async (filters = {}) => {
+    const query = {};
+
+    if (filters.search) {
+        query.$or = [
+            { brand: { $regex: filters.search, $options: "i" } },
+            { model: { $regex: filters.search, $options: "i" } }
+        ];
+    }
+
+    if (filters.fuelType) {
+        query.fuelType = filters.fuelType;
+    }
+
+    if (filters.status) {
+        query.status = filters.status;
+    }
+
+    if (filters.minPrice || filters.maxPrice) {
+        query.price = {};
+
+        if (filters.minPrice) {
+            query.price.$gte = Number(filters.minPrice);
+        }
+
+        if (filters.maxPrice) {
+            query.price.$lte = Number(filters.maxPrice);
+        }
+    }
+
+    const cars = await Car.find(query).sort({ createdAt: -1 });
+
     return cars;
 };
 

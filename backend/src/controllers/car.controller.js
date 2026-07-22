@@ -26,8 +26,16 @@ const addCar = async (req, res) => {
 };
 
 const viewAllCars = async (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.status(400).json({
+            message: "Validation failed",
+            errors: errors.array()
+        });
+    }
     try {
-        const cars = await getAllCars();
+        const cars = await getAllCars(req.query);
 
         return res.status(200).json({
             message: "Cars retrieved successfully",
