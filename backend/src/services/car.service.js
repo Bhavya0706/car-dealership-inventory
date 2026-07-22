@@ -40,7 +40,17 @@ const updateCarById = async (carId, carData) => {
 
     return car;
 };
+const deleteCarById = async (carId) => {
+    const car = await Car.findByIdAndDelete(carId);
 
+    if (!car) {
+        const error = new Error("Car not found");
+        error.statusCode = 404;
+        throw error;
+    }
+
+    return car;
+};
 module.exports = {
-    createCar,getAllCars,getCarById,updateCarById
+    createCar,getAllCars,getCarById,updateCarById,deleteCarById
 };

@@ -1,5 +1,5 @@
 const { validationResult } = require("express-validator");
-const { createCar , getAllCars ,getCarById ,  updateCarById} = require("../services/car.service");
+const { createCar , getAllCars ,getCarById ,  updateCarById ,deleteCarById} = require("../services/car.service");
 
 const addCar = async (req, res) => {
     const errors = validationResult(req);
@@ -78,6 +78,21 @@ const updateCar = async (req, res) => {
         });
     }
 };
+
+const deleteCar = async (req, res) => {
+    try {
+        await deleteCarById(req.params.id);
+
+        return res.status(200).json({
+            message: "Car deleted successfully"
+        });
+    } catch (error) {
+        return res.status(error.statusCode || 500).json({
+            message: error.message || " server error"
+        });
+    }
+};
+
 module.exports = {
-    addCar,viewAllCars,viewCarById,updateCar
+    addCar,viewAllCars,viewCarById,updateCar,deleteCar
 };
