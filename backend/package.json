@@ -5,16 +5,32 @@
     "main": "src/server.js",
     "type": "commonjs",
     "scripts": {
-      "start": "node src/server.js",
-      "dev": "nodemon src/server.js"
+        "start": "node src/server.js",
+        "dev": "nodemon src/server.js",
+        "test": "jest --runInBand",
+        "test:watch": "jest --watch --runInBand"
     },
     "repository": {
-      "type": "git",
-      "url": "git+https://github.com/Bhavya0706/car-dealership-inventory.git"
+        "type": "git",
+        "url": "git+https://github.com/Bhavya0706/car-dealership-inventory.git"
     },
     "bugs": {
-      "url": "https://github.com/Bhavya0706/car-dealership-inventory/issues"
+        "url": "https://github.com/Bhavya0706/car-dealership-inventory/issues"
     },
     "license": "ISC",
-    "author": "Suthar Bhavya"
-  }
+    "author": "Suthar Bhavya",
+    "dependencies": {
+        "bcrypt": "^6.0.0",
+        "cors": "^2.8.6",
+        "dotenv": "^17.4.2",
+        "express": "^5.2.1",
+        "express-validator": "^7.3.2",
+        "jsonwebtoken": "^9.0.3",
+        "mongoose": "^9.8.0"
+    },
+    "devDependencies": {
+        "jest": "^30.4.2",
+        "nodemon": "^3.1.14",
+        "supertest": "^7.2.2"
+    }
+}
