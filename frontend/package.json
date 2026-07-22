@@ -5,14 +5,22 @@
     "description": "React frontend for the Car Dealership Inventory System",
     "type": "module",
     "scripts": {
-      "dev": "vite",
-      "build": "vite build",
-      "preview": "vite preview"
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
     },
     "repository": {
-      "type": "git",
-      "url": "git+https://github.com/Bhavya0706/car-dealership-inventory.git"
+        "type": "git",
+        "url": "git+https://github.com/Bhavya0706/car-dealership-inventory.git"
     },
     "license": "ISC",
-    "author": "Suthar Bhavya"
-  }
+    "author": "Suthar Bhavya",
+    "dependencies": {
+        "react": "^19.2.8",
+        "react-dom": "^19.2.8"
+    },
+    "devDependencies": {
+        "@vitejs/plugin-react": "^6.0.4",
+        "vite": "^8.1.5"
+    }
+}
