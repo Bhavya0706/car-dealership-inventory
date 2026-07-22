@@ -22,6 +22,25 @@ const getCarById = async (carId) => {
     return car;
 };
 
+const updateCarById = async (carId, carData) => {
+    const car = await Car.findByIdAndUpdate(
+        carId,
+        carData,
+        {
+            new: true,
+            runValidators: true
+        }
+    );
+
+    if (!car) {
+        const error = new Error("Car not found");
+        error.statusCode = 404;
+        throw error;
+    }
+
+    return car;
+};
+
 module.exports = {
-    createCar,getAllCars,getCarById
+    createCar,getAllCars,getCarById,updateCarById
 };
