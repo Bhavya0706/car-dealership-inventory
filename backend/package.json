@@ -1,0 +1,20 @@
+{
+    "name": "car-dealership-inventory-backend",
+    "version": "1.0.0",
+    "description": "Backend  for the Car Dealership Inventory System",
+    "main": "src/server.js",
+    "type": "commonjs",
+    "scripts": {
+      "start": "node src/server.js",
+      "dev": "nodemon src/server.js"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/Bhavya0706/car-dealership-inventory.git"
+    },
+    "bugs": {
+      "url": "https://github.com/Bhavya0706/car-dealership-inventory/issues"
+    },
+    "license": "ISC",
+    "author": "Suthar Bhavya"
+  }
