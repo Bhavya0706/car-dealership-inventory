@@ -1,5 +1,5 @@
 const { validationResult } = require("express-validator");
-const { createCar , getAllCars ,getCarById ,  updateCarById ,deleteCarById} = require("../services/car.service");
+const { createCar , getAllCars ,getCarById ,  updateCarById ,deleteCarById ,    purchaseCarById} = require("../services/car.service");
 
 const addCar = async (req, res) => {
     const errors = validationResult(req);
@@ -101,6 +101,27 @@ const deleteCar = async (req, res) => {
     }
 };
 
+const purchaseCar = async (req, res) => {
+    try {
+        const car = await purchaseCarById(req.params.id);
+
+        return res.status(200).json({
+            message: "Car purchased successfully",
+            car
+        });
+    } catch (error) {
+        if (error.name === "CastError") {
+            return res.status(400).json({
+                message: "Invalid car ID"
+            });
+        }
+
+        return res.status(error.statusCode || 500).json({
+            message: error.message || "Internal server error"
+        });
+    }
+};
+
 module.exports = {
-    addCar,viewAllCars,viewCarById,updateCar,deleteCar
+    addCar,viewAllCars,viewCarById,updateCar,deleteCar,purchaseCar
 };

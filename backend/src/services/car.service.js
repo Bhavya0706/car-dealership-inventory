@@ -95,6 +95,38 @@ const deleteCarById = async (carId) => {
 
     return car;
 };
+
+const purchaseCarById = async (carId) => {
+    const car = await Car.findOneAndUpdate(
+        {
+            _id: carId,
+            quantity: { $gt: 0 }
+        },
+        {
+            $inc: { quantity: -1 }
+        },
+        {
+            new: true,
+            runValidators: true
+        }
+    );
+
+    if (!car) {
+        const existingCar = await Car.findById(carId);
+
+        if (!existingCar) {
+            const error = new Error("Car not found");
+            error.statusCode = 404;
+            throw error;
+        }
+
+        const error = new Error("Car is out of stock");
+        error.statusCode = 400;
+        throw error;
+    }
+
+    return car;
+};
 module.exports = {
-    createCar,getAllCars,getCarById,updateCarById,deleteCarById
+    createCar,getAllCars,getCarById,updateCarById,deleteCarById,purchaseCarById
 };
