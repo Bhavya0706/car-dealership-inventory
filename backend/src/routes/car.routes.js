@@ -1,6 +1,6 @@
 const express = require('express');
 
-const {addCar , viewAllCars ,viewCarById , updateCar,deleteCar } = require("../controllers/car.controller");
+const {addCar , viewAllCars ,viewCarById , updateCar,deleteCar,purchaseCar } = require("../controllers/car.controller");
 const {createCarValidator , updateCarValidator , carFilterValidator} = require('../validators/car.validator');
 
 
@@ -15,6 +15,7 @@ router.post("/",authenticate,authorizeRoles('admin'),createCarValidator,addCar);
 router.get("/:id", viewCarById);
 router.put("/:id",authenticate,authorizeRoles("admin"),updateCarValidator,updateCar);
 router.delete("/:id",authenticate,authorizeRoles("admin"),deleteCar);
+router.post("/:id/purchase", authenticate, purchaseCar);
 
 module.exports = router;
   

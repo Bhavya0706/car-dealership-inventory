@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import {
+    Link,
+    useNavigate,
+    useParams
+} from "react-router-dom";
 
 
 function CarDetailsPage() {
@@ -8,6 +12,11 @@ function CarDetailsPage() {
     const [car, setCar] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const [purchasing, setPurchasing] = useState(false);
+const [purchaseMessage, setPurchaseMessage] = useState("");
+const [purchaseError, setPurchaseError] = useState("");
+
+const navigate = useNavigate();
 
     useEffect(() => {
         const fetchCar = async () => {
@@ -42,7 +51,70 @@ function CarDetailsPage() {
 
         fetchCar();
     }, [id]);
-
+    const handlePurchase = async () => {
+        const token = localStorage.getItem("token");
+    
+        if (!token) {
+            navigate("/login", {
+                state: {
+                    message: "Please log in before purchasing a car.",
+                    from: `/cars/${id}`
+                }
+            });
+    
+            return;
+        }
+    
+        setPurchaseMessage("");
+        setPurchaseError("");
+        setPurchasing(true);
+    
+        try {
+            const response = await fetch(
+                `http://localhost:5000/api/cars/${id}/purchase`,
+                {
+                    method: "POST",
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+    
+            const contentType = response.headers.get("content-type");
+    
+            if (!contentType?.includes("application/json")) {
+                throw new Error("The server returned an invalid response");
+            }
+    
+            const data = await response.json();
+    
+            if (response.status === 401) {
+                localStorage.removeItem("token");
+                localStorage.removeItem("user");
+    
+                navigate("/login", {
+                    state: {
+                        message:
+                            "Your login has expired. Please log in again.",
+                        from: `/cars/${id}`
+                    }
+                });
+    
+                return;
+            }
+    
+            if (!response.ok) {
+                throw new Error(data.message || "Purchase failed");
+            }
+    
+            setCar(data.car);
+            setPurchaseMessage("Car purchased successfully.");
+        } catch (error) {
+            setPurchaseError(error.message);
+        } finally {
+            setPurchasing(false);
+        }
+    };
     if (loading) {
         return <p className="car-details-message">Loading car details...</p>;
     }
@@ -129,15 +201,30 @@ function CarDetailsPage() {
                                 "No description available."}
                         </p>
                     </div>
+                    {purchaseMessage && (
+    <p className="purchase-message success">
+        {purchaseMessage}
+    </p>
+)}
 
-                    <button
-                        className="purchase-button"
-                        disabled={car.quantity === 0}
-                    >
-                        {car.quantity === 0
-                            ? "Out of Stock"
-                            : "Purchase"}
-                    </button>
+{purchaseError && (
+    <p className="purchase-message error">
+        {purchaseError}
+    </p>
+)}
+
+<button
+    type="button"
+    className="purchase-button"
+    onClick={handlePurchase}
+    disabled={car.quantity === 0 || purchasing}
+>
+    {purchasing
+        ? "Purchasing..."
+        : car.quantity === 0
+          ? "Out of Stock"
+          : "Purchase"}
+</button>
                 </div>
             </section>
         </main>

@@ -954,3 +954,141 @@ main {
     color: #17492a;
     text-decoration: underline;
 }
+
+.purchase-message {
+    margin-bottom: 14px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.purchase-message.success {
+    color: #166534;
+    background: #dcfce7;
+    border: 1px solid #86efac;
+}
+
+.purchase-message.error {
+    color: #991b1b;
+    background: #fee2e2;
+    border: 1px solid #fca5a5;
+}
+
+.purchase-button {
+    background: #225f38;
+}
+
+.purchase-button:hover:not(:disabled) {
+    background: #17492a;
+}
+
+.purchase-button:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+}
+.navbar {
+    width: 100%;
+    background: #225f38;
+    color: #ffffff;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-container {
+    max-width: 1200px;
+    min-height: 72px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.navbar-logo {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 800;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.nav-link {
+    color: #e9f7ec;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #6cf06c;
+}
+
+.navbar-auth {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.navbar-username {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.login-link {
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.register-link,
+.logout-button {
+    padding: 9px 17px;
+    border: 1px solid #6cf06c;
+    border-radius: 7px;
+    color: #17492a;
+    background: #6cf06c;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.register-link:hover,
+.logout-button:hover {
+    color: #ffffff;
+    background: transparent;
+}
+
+@media (max-width: 750px) {
+    .navbar-container {
+        padding: 16px 20px;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .navbar-links {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .navbar-auth {
+        margin-left: auto;
+    }
+
+    .navbar-username {
+        display: none;
+    }
+}

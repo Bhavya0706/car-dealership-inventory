@@ -58,7 +58,8 @@ function LoginPage() {
             localStorage.setItem("token", data.token);
             localStorage.setItem("user", JSON.stringify(data.user));
 
-            navigate("/cars");
+            const destination = location.state?.from || "/cars";
+            navigate(destination, { replace: true });
         } catch (error) {
             setError(error.message);
         } finally {
