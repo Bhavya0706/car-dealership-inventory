@@ -134,17 +134,6 @@ const navigate = useNavigate();
             </Link>
 
             <section className="car-details-card">
-                <div className="details-image-container">
-                    {car.image ? (
-                        <img
-                            src={car.image}
-                            alt={`${car.make} ${car.model}`}
-                            className="details-image"
-                        />
-                    ) : (
-                        <div className="details-placeholder">🚙</div>
-                    )}
-                </div>
 
                 <div className="details-content">
                     <span

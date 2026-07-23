@@ -10,7 +10,6 @@ const emptyForm = {
     price: "",
     quantity: "",
     fuelType: "Petrol",
-    image: "",
     description: ""
 };
 
@@ -126,7 +125,7 @@ function AdminPage() {
             price: car.price,
             quantity: car.quantity,
             fuelType: car.fuelType,
-            image: car.image || "",
+         
             description: car.description || ""
         });
 
@@ -316,13 +315,6 @@ function AdminPage() {
                         <option value="CNG">CNG</option>
                     </select>
 
-                    <input
-                        name="image"
-                        type="url"
-                        placeholder="Image URL"
-                        value={form.image}
-                        onChange={handleChange}
-                    />
 
                     <textarea
                         name="description"

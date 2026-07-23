@@ -43,12 +43,6 @@ const carSchema = new mongoose.Schema(
             enum: ["Petrol", "Diesel", "Electric", "Hybrid", "CNG"]
         },
 
-
-        image: {
-            type: String,
-            default: ""
-        },
-
         description: {
             type: String,
             trim: true,
