@@ -10,27 +10,41 @@ const getAllCars = async (filters = {}) => {
 
     if (filters.search) {
         query.$or = [
-            { brand: { $regex: filters.search, $options: "i" } },
-            { model: { $regex: filters.search, $options: "i" } }
+            { make: { $regex: filters.search, $options: "i" } },
+            { model: { $regex: filters.search, $options: "i" } },
+            { category: { $regex: filters.search, $options: "i" } }
         ];
     }
 
-    if (filters.fuelType) {
-        query.fuelType = filters.fuelType;
+    if (filters.make) {
+        query.make = {
+            $regex: filters.make,
+            $options: "i"
+        };
     }
 
-    if (filters.status) {
-        query.status = filters.status;
+    if (filters.model) {
+        query.model = {
+            $regex: filters.model,
+            $options: "i"
+        };
+    }
+
+    if (filters.category) {
+        query.category = {
+            $regex: filters.category,
+            $options: "i"
+        };
     }
 
     if (filters.minPrice || filters.maxPrice) {
         query.price = {};
 
-        if (filters.minPrice) {
+        if (filters.minPrice !== undefined) {
             query.price.$gte = Number(filters.minPrice);
         }
 
-        if (filters.maxPrice) {
+        if (filters.maxPrice !== undefined) {
             query.price.$lte = Number(filters.maxPrice);
         }
     }

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function CarCard({ car }) {
     return (
         <article className="car-card">
@@ -5,22 +7,30 @@ function CarCard({ car }) {
                 {car.image ? (
                     <img
                         src={car.image}
-                        alt={`${car.brand} ${car.model}`}
+                        alt={`${car.make} ${car.model}`}
                         className="car-image"
                     />
                 ) : (
                     <div className="car-image-placeholder">🚙</div>
                 )}
 
-                <span className={`car-status ${car.status.toLowerCase()}`}>
-                    {car.status}
-                </span>
+<span
+    className={
+        car.quantity > 0
+            ? "car-status available"
+            : "car-status sold"
+    }
+>
+    {car.quantity > 0
+        ? `${car.quantity} in stock`
+        : "Out of stock"}
+</span>
             </div>
 
             <div className="car-details">
                 <div className="car-heading">
                     <div>
-                        <h3>{car.brand} {car.model}</h3>
+                        <h3>{car.make} {car.model}</h3>
                         <p>{car.year}</p>
                     </div>
 
@@ -37,12 +47,12 @@ function CarCard({ car }) {
                     {car.description || "No description available."}
                 </p>
 
-                <button
-                    className="view-car-button"
-                    disabled={car.status === "Sold"}
-                >
-                    {car.status === "Sold" ? "Already Sold" : "View Details"}
-                </button>
+                <Link
+    to={`/cars/${car._id}`}
+    className="view-car-button"
+>
+    View Details
+</Link>
             </div>
         </article>
     );

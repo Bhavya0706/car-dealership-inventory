@@ -8,10 +8,12 @@ const {authorizeRoles} = require("../middleware/role.middelware");
 const { authenticate } = require('../middleware/auth.middleware');
 
 const router = express.Router();
-router.get("/", carFilterValidator, viewAllCars);
-router.get("/:id", viewCarById);
+
+router.get("/", viewAllCars);
+router.get("/search", carFilterValidator, viewAllCars);
 router.post("/",authenticate,authorizeRoles('admin'),createCarValidator,addCar);
-router.patch("/:id",authenticate,authorizeRoles("admin"),updateCarValidator,updateCar);
+router.get("/:id", viewCarById);
+router.put("/:id",authenticate,authorizeRoles("admin"),updateCarValidator,updateCar);
 router.delete("/:id",authenticate,authorizeRoles("admin"),deleteCar);
 
 module.exports = router;

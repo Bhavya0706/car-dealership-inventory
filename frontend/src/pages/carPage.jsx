@@ -8,7 +8,7 @@ function CarsPage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [search, setSearch] = useState("");
-const [statusFilter, setStatusFilter] = useState("All");
+
 
     useEffect(() => {
         async function loadCars() {
@@ -30,14 +30,10 @@ const [statusFilter, setStatusFilter] = useState("All");
     const filteredCars = cars.filter((car) => {
         const searchText = search.toLowerCase();
     
-        const matchesSearch =
-            car.brand.toLowerCase().includes(searchText) ||
-            car.model.toLowerCase().includes(searchText);
-    
-        const matchesStatus =
-            statusFilter === "All" || car.status === statusFilter;
-    
-        return matchesSearch && matchesStatus;
+        return (
+            car.make.toLowerCase().includes(searchText) ||
+            car.model.toLowerCase().includes(searchText)
+        );
     });
 
     if (loading) {
@@ -64,20 +60,11 @@ const [statusFilter, setStatusFilter] = useState("All");
         <div className="inventory-filters">
     <input
         type="text"
-        placeholder="Search by brand or model..."
+        placeholder="Search by make or model..."
         value={search}
         onChange={(event) => setSearch(event.target.value)}
     />
 
-    <select
-        value={statusFilter}
-        onChange={(event) => setStatusFilter(event.target.value)}
-    >
-        <option value="All">All statuses</option>
-        <option value="Available">Available</option>
-        <option value="Reserved">Reserved</option>
-        <option value="Sold">Sold</option>
-    </select>
 </div>
         <div className="cars-grid">
         {filteredCars.map((car) => (
