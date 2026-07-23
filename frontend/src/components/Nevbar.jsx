@@ -1,6 +1,10 @@
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import "./Nevbar.css";
+import {
+    Link,
+    NavLink,
+    useLocation,
+    useNavigate
+} from "react-router-dom";
 
 function Navbar() {
     const navigate = useNavigate();
@@ -9,15 +13,15 @@ function Navbar() {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        const savedUser = localStorage.getItem("user");
         const token = localStorage.getItem("token");
+        const savedUser = localStorage.getItem("user");
 
-        if (savedUser && token) {
+        if (token && savedUser) {
             try {
                 setUser(JSON.parse(savedUser));
             } catch {
-                localStorage.removeItem("user");
                 localStorage.removeItem("token");
+                localStorage.removeItem("user");
                 setUser(null);
             }
         } else {
@@ -35,75 +39,64 @@ function Navbar() {
 
     return (
         <header className="navbar">
-            <div className="navbar-container">
-                <Link to="/" className="navbar-logo">
-                    Car Dealership
-                </Link>
+            <Link to="/" className="navbar-logo">
+                Car Dealership
+            </Link>
 
-                <nav className="navbar-links">
+            <nav className="navbar-links">
+                <NavLink
+                    to="/cars"
+                    className={({ isActive }) =>
+                        isActive ? "nav-link active" : "nav-link"
+                    }
+                >
+                    Cars
+                </NavLink>
+
+                {user?.role === "admin" && (
                     <NavLink
-                        to="/"
+                        to="/admin"
                         className={({ isActive }) =>
                             isActive ? "nav-link active" : "nav-link"
                         }
                     >
-                        Home
+                        Admin Dashboard
                     </NavLink>
+                )}
+            </nav>
 
-                    <NavLink
-                        to="/cars"
-                        className={({ isActive }) =>
-                            isActive ? "nav-link active" : "nav-link"
-                        }
-                    >
-                        Cars
-                    </NavLink>
+            <div className="navbar-auth">
+                {user ? (
+                    <>
+                        <span className="navbar-username">
+                            Hi, {user.name}
+                        </span>
 
-                    {user?.role === "admin" && (
-                        <NavLink
-                            to="/admin"
-                            className={({ isActive }) =>
-                                isActive ? "nav-link active" : "nav-link"
-                            }
+                        <button
+                            type="button"
+                            className="logout-button"
+                            onClick={handleLogout}
                         >
-                            Admin Dashboard
+                            Logout
+                        </button>
+                    </>
+                ) : (
+                    <>
+                        <NavLink
+                            to="/login"
+                            className="login-link"
+                        >
+                            Login
                         </NavLink>
-                    )}
-                </nav>
 
-                <div className="navbar-auth">
-                    {user ? (
-                        <>
-                            <span className="navbar-username">
-                                Hi, {user.name}
-                            </span>
-
-                            <button
-                                type="button"
-                                className="logout-button"
-                                onClick={handleLogout}
-                            >
-                                Logout
-                            </button>
-                        </>
-                    ) : (
-                        <>
-                            <NavLink
-                                to="/login"
-                                className="login-link"
-                            >
-                                Login
-                            </NavLink>
-
-                            <NavLink
-                                to="/register"
-                                className="register-link"
-                            >
-                                Register
-                            </NavLink>
-                        </>
-                    )}
-                </div>
+                        <NavLink
+                            to="/register"
+                            className="register-link"
+                        >
+                            Register
+                        </NavLink>
+                    </>
+                )}
             </div>
         </header>
     );
