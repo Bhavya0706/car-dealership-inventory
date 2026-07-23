@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 function Hero() {
     return (
         <section className="hero">
@@ -14,10 +15,10 @@ function Hero() {
                     your budget and preferences.
                 </p>
 
-                <button className="explore-button">
-                    Explore Cars
-                    <span>→</span>
-                </button>
+                <Link to="/cars" className="explore-button">
+    Explore Cars
+    <span>→</span>
+</Link>
             </div>
 
             <div className="hero-visual">

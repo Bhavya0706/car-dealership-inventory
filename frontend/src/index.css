@@ -275,3 +275,348 @@ main {
         height: 240px;
     }
 }
+
+.navbar {
+    width: calc(100% - 48px);
+    max-width: 1200px;
+    min-height: 68px;
+    margin: 20px auto;
+    padding: 10px 14px 10px 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background-image: linear-gradient(
+        to left,
+        rgb(184, 241, 169),
+        rgb(114, 244, 114)
+    );
+
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(42, 105, 56, 0.15);
+}
+
+.navbar-logo {
+    color: #12351c;
+    font-size: 1.45rem;
+    font-weight: 800;
+    text-decoration: none;
+    letter-spacing: -0.6px;
+}
+
+.navbar-logo span {
+    color: #287d3d;
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.navbar-links a {
+    padding: 10px 16px;
+    color: #173c21;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 11px;
+
+    transition:
+        color 0.25s ease,
+        background-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.navbar-links a:hover,
+.navbar-links a.active {
+    color: white;
+    background-color: rgba(16, 70, 31, 0.82);
+    transform: translateY(-2px);
+}
+
+.register-link {
+    border: 1px solid rgba(18, 53, 28, 0.25);
+}
+
+.explore-button {
+    text-decoration: none;
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        width: calc(100% - 24px);
+        padding: 10px 12px;
+    }
+
+    .navbar-logo {
+        font-size: 1.2rem;
+    }
+
+    .navbar-links {
+        gap: 2px;
+    }
+
+    .navbar-links a {
+        padding: 8px 9px;
+        font-size: 0.88rem;
+    }
+}
+
+.inventory-section {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px 24px 60px;
+}
+
+.inventory-heading {
+    margin-bottom: 30px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.inventory-heading span {
+    color: #35a853;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+.inventory-heading h2 {
+    margin-top: 6px;
+
+    color: #14291a;
+    font-size: 2.3rem;
+}
+
+.inventory-heading > p {
+    color: #647469;
+    font-weight: 600;
+}
+
+.cars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 360px));
+    gap: 24px;
+    justify-content: start;
+}
+
+.car-card {
+    overflow: hidden;
+
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(218, 235, 221, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(40, 90, 50, 0.1);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.car-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 45px rgba(40, 90, 50, 0.17);
+}
+
+.car-image-container {
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+
+    background-image: linear-gradient(145deg, #e6f8e7, #c8f0ce);
+}
+
+.car-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.car-image-placeholder {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 5rem;
+}
+
+.car-status {
+    padding: 7px 12px;
+    position: absolute;
+    top: 14px;
+    right: 14px;
+
+    color: white;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.car-status.available {
+    background-color: #2d9b4a;
+}
+
+.car-status.sold {
+    background-color: #d64545;
+}
+
+.car-status.reserved {
+    background-color: #d89025;
+}
+
+.car-details {
+    padding: 20px;
+}
+
+.car-heading {
+    margin-bottom: 16px;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.car-heading h3 {
+    margin-bottom: 4px;
+
+    color: #183720;
+    font-size: 1.25rem;
+}
+
+.car-heading p {
+    color: #7a887e;
+    font-size: 0.9rem;
+}
+
+.car-heading strong {
+    color: #278c42;
+    font-size: 1.1rem;
+    white-space: nowrap;
+}
+
+.car-info {
+    margin-bottom: 14px;
+
+    color: #526b58;
+    font-size: 0.92rem;
+    font-weight: 600;
+}
+
+.car-description {
+    min-height: 48px;
+    margin-bottom: 20px;
+
+    color: #68776c;
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+.view-car-button {
+    width: 100%;
+    padding: 12px;
+
+    color: white;
+    background-color: #277e3c;
+    border: none;
+    border-radius: 11px;
+
+    font-weight: 700;
+    cursor: pointer;
+
+    transition:
+        background-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.view-car-button:hover:not(:disabled) {
+    background-color: #195f2b;
+    transform: translateY(-2px);
+}
+
+.view-car-button:disabled {
+    color: #727b74;
+    background-color: #dfe5e0;
+    cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+    .inventory-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .inventory-heading h2 {
+        font-size: 1.9rem;
+    }
+
+    .cars-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.inventory-filters {
+    margin-bottom: 28px;
+
+    display: flex;
+    gap: 14px;
+}
+
+.inventory-filters input,
+.inventory-filters select {
+    padding: 12px 15px;
+
+    color: #183720;
+    background-color: white;
+    border: 1px solid #d7e7da;
+    border-radius: 11px;
+    outline: none;
+
+    font-size: 0.95rem;
+}
+
+.inventory-filters input {
+    width: 100%;
+    max-width: 420px;
+}
+
+.inventory-filters select {
+    min-width: 170px;
+    cursor: pointer;
+}
+
+.inventory-filters input:focus,
+.inventory-filters select:focus {
+    border-color: #39a956;
+    box-shadow: 0 0 0 3px rgba(57, 169, 86, 0.12);
+}
+
+.no-cars-message {
+    margin-top: 25px;
+    color: #68776c;
+    font-weight: 600;
+}
+
+@media (max-width: 600px) {
+    .inventory-filters {
+        flex-direction: column;
+    }
+
+    .inventory-filters input,
+    .inventory-filters select {
+        width: 100%;
+        max-width: none;
+    }
+}
