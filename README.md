@@ -1,110 +1,105 @@
-🚘 Car Dealership Inventory System
+# 🚘 Car Dealership Inventory System
 
 <p align="center">
-  <strong>A secure full-stack platform for browsing, purchasing, and managing dealership inventory.</strong>
+  <strong>A full-stack platform for browsing, purchasing, and managing dealership vehicle inventory.</strong>
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black" alt="React">
   <img src="https://img.shields.io/badge/Node.js-Express-339933?logo=node.js&logoColor=white" alt="Node.js and Express">
   <img src="https://img.shields.io/badge/MongoDB-Mongoose-47A248?logo=mongodb&logoColor=white" alt="MongoDB and Mongoose">
-  <img src="https://img.shields.io/badge/Auth-JWT-000000?logo=jsonwebtokens&logoColor=white" alt="JWT authentication">
-  <img src="https://img.shields.io/badge/Status-Completed-2E8B57" alt="Project status">
+  <img src="https://img.shields.io/badge/Auth-JWT-000000?logo=jsonwebtokens&logoColor=white" alt="JWT">
+  <img src="https://img.shields.io/badge/Status-Completed-2E8B57" alt="Completed">
 </p>
 
-A full-stack car dealership inventory application that allows customers to browse, search, filter, and purchase vehicles while providing administrators with secure inventory-management tools.
+## 📖 About the Project
 
-The project was developed as part of the TDD Kata: Car Dealership Inventory System. It demonstrates REST API development, MongoDB integration, JWT authentication, role-based authorization, responsive React interfaces, inventory operations, and responsible use of AI-assisted development.
+The **Car Dealership Inventory System** is a full-stack web application that allows customers to browse, search, filter, and purchase available vehicles.
 
-✨ Features
+It also provides a protected administrator dashboard through which administrators can add, edit, delete, and restock vehicles.
 
-👤 Customer Features
+The application includes JWT authentication, role-based authorization, inventory management, stock control, validation, and a responsive React interface.
 
-Register and log in securely.
+---
 
-Browse the complete vehicle inventory.
+## ✨ Features
 
-Search vehicles by make or model.
+### 👤 Customer Features
 
-Filter vehicles by category and minimum/maximum price.
+- Register a new customer account.
+- Log in securely using email and password.
+- Browse all available vehicles.
+- Search vehicles by make or model.
+- Filter vehicles by category.
+- Filter vehicles using minimum and maximum prices.
+- View complete details of an individual vehicle.
+- Purchase an available vehicle.
+- Automatically reduce stock after a successful purchase.
+- Prevent purchases when a vehicle is out of stock.
+- Log out from the application.
 
-View detailed information about an individual vehicle.
+### 🛠️ Administrator Features
 
-Purchase an available vehicle.
+- Access a protected administrator dashboard.
+- Add new vehicles to the inventory.
+- Edit existing vehicle information.
+- Delete vehicles from the inventory.
+- Restock vehicles.
+- View the available quantity of every vehicle.
+- Restrict administrator pages and APIs to users with the `admin` role.
 
-Automatically reduce stock after a successful purchase.
+---
 
-Prevent purchases when a vehicle is out of stock.
+## 🧰 Technologies Used
 
-Log out and clear the authenticated session.
+### 🎨 Frontend
 
-🛠️ Administrator Features
+- React
+- React Router
+- JavaScript
+- HTML5
+- CSS3
+- Vite
 
-Access a protected admin dashboard.
+### ⚙️ Backend
 
-Add new vehicles to the inventory.
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JSON Web Token
+- bcrypt
+- express-validator
 
-Update existing vehicle information.
+### 🛠️ Development Tools
 
-Delete vehicles.
+- Git
+- GitHub
+- Visual Studio Code
+- Postman
+- MongoDB Compass
 
-Restock vehicles with quantity validation.
+---
 
-View current stock levels.
+## 🔄 Application Flow
 
-Restrict admin pages and APIs to users with the admin role.
+1. A visitor registers a new account or logs in.
+2. The backend verifies the credentials and generates a JWT.
+3. The frontend stores the token and authenticated user information.
+4. Customers can browse, search, filter, and view vehicles.
+5. An authenticated customer can purchase an available vehicle.
+6. A successful purchase decreases the vehicle quantity by one.
+7. Administrators can access the protected dashboard.
+8. Administrators can add, edit, delete, and restock vehicles.
+9. Backend middleware protects authenticated and administrator-only operations.
 
-🧰 Tech Stack
+---
 
-🎨 Frontend
+## 📁 Project Structure
 
-React
-
-React Router
-
-JavaScript
-
-HTML5
-
-CSS3
-
-Vite
-
-⚙️ Backend
-
-Node.js
-
-Express.js
-
-MongoDB
-
-Mongoose
-
-JSON Web Tokens (JWT)
-
-bcrypt
-
-express-validator
-
-🔄 Application Flow
-
-A visitor creates an account or logs in.
-
-The backend verifies the credentials and returns a JWT.
-
-The frontend stores the authenticated user information and token.
-
-Customers can browse, search, filter, view, and purchase vehicles.
-
-A successful purchase decreases the selected vehicle's quantity.
-
-Administrators can access the protected dashboard to manage inventory.
-
-Backend authentication and role middleware protect sensitive operations.
-
-📁 Project Structure
-
+```text
 car-dealership-inventory/
+│
 ├── backend/
 │   ├── src/
 │   │   ├── config/
@@ -114,9 +109,11 @@ car-dealership-inventory/
 │   │   ├── routes/
 │   │   ├── services/
 │   │   ├── validators/
-│   │   └── app.js
+│   │   ├── app.js
+│   │   └── server.js
 │   ├── .env
 │   └── package.json
+│
 ├── frontend/
 │   ├── src/
 │   │   ├── api/
@@ -125,283 +122,216 @@ car-dealership-inventory/
 │   │   ├── App.jsx
 │   │   ├── index.css
 │   │   └── main.jsx
+│   │
 │   ├── .env
 │   └── package.json
+│
 ├── PROMPTS.md
 └── README.md
+```
 
-🚀 Getting Started
+> The `.env` files are shown only to explain their required location. They should not be uploaded to GitHub.
 
-✅ Prerequisites
+---
 
-Install the following before running the project:
+## 🚀 Getting Started
 
-Node.js (version 18 or later recommended)
+### ✅ Prerequisites
 
-npm
+Make sure the following are installed:
 
-MongoDB locally or a MongoDB Atlas connection
+- [Node.js](https://nodejs.org/)
+- npm
+- [MongoDB](https://www.mongodb.com/) or MongoDB Atlas
+- Git
 
-Git
+### 1️⃣ Clone the Repository
 
-1️⃣ Clone the Repository
-
+```bash
 git clone https://github.com/Bhavya0706/car-dealership-inventory.git
 cd car-dealership-inventory
+```
 
-2️⃣ Configure and Run the Backend
+### 2️⃣ Install and Run the Backend
 
+Move into the backend directory:
+
+```bash
 cd backend
 npm install
+```
 
-Create a .env file inside the backend directory:
+Create a `.env` file inside the `backend` directory:
 
+```env
 PORT=5000
 MONGODB_URI=your_mongodb_connection_string
-MONGODB_TEST_URI=your_test_database_connection_string
 JWT_SECRET=your_strong_jwt_secret
 JWT_EXPIRES_IN=1d
 CLIENT_URL=http://localhost:5173
+```
 
-Use the environment-variable names already referenced by your backend configuration if they differ from the example above.
+Start the backend server:
 
-Start the backend:
-
+```bash
 npm run dev
+```
 
-The API will normally run at:
+The backend will normally run at:
 
+```text
 http://localhost:5000
+```
 
-3️⃣ Configure and Run the Frontend
+### 3️⃣ Install and Run the Frontend
 
-Open another terminal:
+Open another terminal and move into the frontend directory:
 
+```bash
 cd frontend
 npm install
+```
 
-Create a .env file inside the frontend directory:
+Create a `.env` file inside the `frontend` directory:
 
+```env
 VITE_API_URL=http://localhost:5000/api
+```
 
-Start the frontend:
+Start the frontend application:
 
+```bash
 npm run dev
+```
 
-Open the local URL displayed by Vite, normally:
+Open the URL displayed by Vite. It will normally be:
 
+```text
 http://localhost:5173
+```
 
-🔐 Admin Setup
+---
+## 🔑 Test Administrator Credentials
 
-Public registration creates a normal user account. To test administrator functionality:
+Use the following account to test administrator features:
 
-Register a user through the application.
+```text
+Email: bhavya@example.com
+Password: Password123
+```
+```
+## 🔐 Administrator Setup
 
-Open the users collection in MongoDB Compass or MongoDB Atlas.
+Public registration creates a normal customer account. Follow these steps to create an administrator account:
 
-Change that user's role to:
+1. Register a user through the application.
+2. Open the users collection in MongoDB Compass or MongoDB Atlas.
+3. Find the registered user.
+4. Change the user's role to:
 
+```json
 {
   "role": "admin"
 }
+```
 
-Log out and log in again so the newly issued JWT contains the updated role.
+5. Log out from the application.
+6. Log in again so a new JWT is generated with the updated role.
+7. The **Admin Dashboard** option will appear in the navigation bar.
 
-Open the Admin Dashboard from the navigation bar.
 
-Frontend route protection improves the user experience, while backend authentication and role authorization provide the actual security.
 
-🌐 API Overview
+> Frontend route protection controls the user interface, while backend authentication and authorization provide the actual security.
 
-The exact base URL is:
+---
 
-http://localhost:5000/api
+## 🌐 API Endpoints
 
-🔑 Authentication
+### 🔑 Authentication APIs
 
-Method
+| Method | Endpoint | Access | Description |
+|---|---|---|---|
+| `POST` | `/api/auth/register` | Public | Register a new user |
+| `POST` | `/api/auth/login` | Public | Log in and receive a JWT |
 
-Endpoint
+### 🚗 Vehicle APIs
 
-Access
+| Method | Endpoint | Access | Description |
+|---|---|---|---|
+| `GET` | `/api/cars` | Public | Get all vehicles |
+| `GET` | `/api/cars/search` | Public | Search and filter vehicles |
+| `GET` | `/api/cars/:id` | Public | Get a vehicle by ID |
+| `POST` | `/api/cars` | Admin | Add a new vehicle |
+| `PUT` | `/api/cars/:id` | Admin | Update a vehicle |
+| `DELETE` | `/api/cars/:id` | Admin | Delete a vehicle |
+| `POST` | `/api/cars/:id/purchase` | Authenticated | Purchase a vehicle |
+| `PATCH` | `/api/cars/:id/restock` | Admin | Restock a vehicle |
 
-Description
+Protected API requests require the following header:
 
-POST
-
-/auth/register
-
-Public
-
-Register a user
-
-POST
-
-/auth/login
-
-Public
-
-Log in and receive a JWT
-
-🚗 Vehicles and Inventory
-
-Method
-
-Endpoint
-
-Access
-
-Description
-
-GET
-
-/cars
-
-Public
-
-Get all vehicles
-
-GET
-
-/cars/search
-
-Public
-
-Search and filter vehicles
-
-GET
-
-/cars/:id
-
-Public
-
-Get one vehicle
-
-POST
-
-/cars
-
-Admin
-
-Add a vehicle
-
-PUT
-
-/cars/:id
-
-Admin
-
-Update a vehicle
-
-DELETE
-
-/cars/:id
-
-Admin
-
-Delete a vehicle
-
-POST
-
-/cars/:id/purchase
-
-Authenticated user
-
-Purchase a vehicle
-
-PATCH
-
-/cars/:id/restock
-
-Admin
-
-Increase vehicle stock
-
-Protected requests must include:
-
+```http
 Authorization: Bearer <token>
+```
 
-🔍 Search and Filter Example
+### 🔍 Search and Filter Example
 
+```http
 GET /api/cars/search?search=tata&category=SUV&minPrice=500000&maxPrice=1500000
+```
 
-Filters may be used separately or together.
+The search and filter options can be used separately or together.
 
-🛡️ Validation and Security
+---
 
-Passwords are hashed using bcrypt.
+## 🛡️ Security and Validation
 
-JWTs are used for token-based authentication.
-
-Role middleware protects administrator endpoints.
-
-Vehicle and authentication inputs are validated.
-
-Invalid identifiers and unavailable vehicles return appropriate errors.
-
-Purchase requests cannot reduce stock below zero.
-
-Restock quantities must be positive whole numbers.
-
-Secrets and database credentials are stored in environment variables.
+- Passwords are securely hashed using bcrypt.
+- JWTs are used for authentication.
+- Role-based middleware protects administrator APIs.
+- Authentication middleware protects purchase operations.
+- User and vehicle input is validated.
+- Customers cannot purchase out-of-stock vehicles.
+- Stock quantity cannot decrease below zero.
+- Restock quantity must be a positive value.
+- Secrets and database credentials are stored using environment variables.
+- `.env` and `node_modules` are excluded through `.gitignore`.
 
 
-🧪 Testing
+---
 
-Test Command
-
-Run the backend test suite from the backend directory using the test script configured in backend/package.json:
-
-cd backend
-npm test
-
-
-
-🤖 My AI Usage
+## 🤖 My AI Usage
 
 - **AI tool used:** ChatGPT
-- **Purpose:** Used for understanding requirements, debugging errors, improving code structure, and preparing documentation.
-- **Review process:** All AI-generated suggestions were reviewed, tested, and modified before being added to the project.
+- **Purpose:** AI was primarily used to accelerate development within a limited timeframe. It assisted with debugging errors, improving code structure, implementing filters, and creating most of the frontend interface, allowing me to focus more on backend development, authentication, authorization, and core business logic. All AI-generated code was reviewed, tested, and adapted before integration.
+  
+See [`PROMPTS.md`](./PROMPTS.md) for the session-by-session AI usage history.
 
-See [`PROMPTS.md`](./PROMPTS.md) for the complete session-by-session history.
+---
 
-👨‍💻 My Responsibility
+## ⚠️ Current Limitations
 
-I reviewed the suggested code, adapted it to my project structure, connected the individual layers, tested the application, fixed integration problems, and made the final implementation decisions. AI output was treated as assistance rather than as a substitute for understanding the code.
-
-📝 Reflection
-
-AI reduced the time needed to investigate errors and compare implementation approaches. It was particularly useful for explaining unfamiliar behavior and identifying import/export, routing, validation, and frontend state-management problems. At the same time, the project showed that AI-generated suggestions still require manual verification because naming, folder structure, API behavior, and business rules differ between applications.
-
-
-
-⚠️ Known Limitations
-
-Public registration creates customer accounts; an administrator role must be assigned directly in the database.
-
-The application currently uses vehicle information without uploaded vehicle images.
-
-Deployment is not included.
-
-Automated test coverage should only be reported after the test suite has been implemented and run.
+- Public registration only creates customer accounts.
+- Administrator roles must currently be assigned directly through the database.
+- The application does not use vehicle images.
+- Customer purchase history is not currently available.
+- The application is not currently deployed.
 
 
-🌍 Deployment
 
-Live application: Not deployed
+---
 
-👨‍🎓 Author
+## 👨‍💻 Author
 
-Bhavya Suthar
+**Bhavya Suthar**
 
-GitHub: Bhavya0706
+- GitHub: [Bhavya0706](https://github.com/Bhavya0706)
+- Repository: [car-dealership-inventory](https://github.com/Bhavya0706/car-dealership-inventory)
 
-Repository: car-dealership-inventory
+---
 
-📜 Academic Integrity
 
-This project is the author's own implementation, developed with transparent AI assistance. No code was intentionally copied from another developer's repository.
+
+---
 
 <p align="center">
   Made with 💚 by <strong>Bhavya Suthar</strong>
