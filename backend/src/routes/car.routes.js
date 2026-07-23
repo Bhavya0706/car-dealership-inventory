@@ -1,6 +1,6 @@
 const express = require('express');
 
-const {addCar , viewAllCars ,viewCarById , updateCar,deleteCar,purchaseCar } = require("../controllers/car.controller");
+const {addCar , viewAllCars ,viewCarById , updateCar,deleteCar,purchaseCar,restockCar } = require("../controllers/car.controller");
 const {createCarValidator , updateCarValidator , carFilterValidator} = require('../validators/car.validator');
 
 
@@ -13,6 +13,7 @@ router.get("/", viewAllCars);
 router.get("/search", carFilterValidator, viewAllCars);
 router.post("/",authenticate,authorizeRoles('admin'),createCarValidator,addCar);
 router.get("/:id", viewCarById);
+router.patch("/:id/restock",authenticate,authorizeRoles("admin"),restockCar);
 router.put("/:id",authenticate,authorizeRoles("admin"),updateCarValidator,updateCar);
 router.delete("/:id",authenticate,authorizeRoles("admin"),deleteCar);
 router.post("/:id/purchase", authenticate, purchaseCar);

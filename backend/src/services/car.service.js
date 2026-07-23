@@ -127,6 +127,39 @@ const purchaseCarById = async (carId) => {
 
     return car;
 };
+
+const restockCarById = async (carId, quantity) => {
+    const restockQuantity = Number(quantity);
+
+    if (!Number.isInteger(restockQuantity) || restockQuantity <= 0) {
+        const error = new Error(
+            "Restock quantity must be a positive whole number"
+        );
+        error.statusCode = 400;
+        throw error;
+    }
+
+    const car = await Car.findByIdAndUpdate(
+        carId,
+        {
+            $inc: {
+                quantity: restockQuantity
+            }
+        },
+        {
+            new: true,
+            runValidators: true
+        }
+    );
+
+    if (!car) {
+        const error = new Error("Car not found");
+        error.statusCode = 404;
+        throw error;
+    }
+
+    return car;
+};
 module.exports = {
-    createCar,getAllCars,getCarById,updateCarById,deleteCarById,purchaseCarById
+    createCar,getAllCars,getCarById,updateCarById,deleteCarById,purchaseCarById,   restockCarById
 };
