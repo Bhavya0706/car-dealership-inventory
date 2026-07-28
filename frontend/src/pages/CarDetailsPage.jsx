@@ -4,6 +4,7 @@ import {
     useNavigate,
     useParams
 } from "react-router-dom";
+const API_URL = import.meta.env.VITE_API_URL;
 
 
 function CarDetailsPage() {
@@ -22,7 +23,7 @@ const navigate = useNavigate();
         const fetchCar = async () => {
             try {
                 const response = await fetch(
-                    `http://localhost:5000/api/cars/${id}`
+                  `${API_URL}/cars/${id}`
                 );
                 const contentType = response.headers.get("content-type");
 
@@ -71,7 +72,7 @@ const navigate = useNavigate();
     
         try {
             const response = await fetch(
-                `http://localhost:5000/api/cars/${id}/purchase`,
+              `${API_URL}/cars/${id}/purchase`,
                 {
                     method: "POST",
                     headers: {
