@@ -10,9 +10,17 @@ const addCar = async (req, res) => {
             errors: errors.array()
         });
     }
+    
+    if(req.body.quantity < 0){
+        return res.status(400).json({
+            message : "quantity should be greater than zero"
+        })
+    }
+
 
     try {
         const car = await createCar(req.body);
+
 
         return res.status(201).json({
             message: "Car added successfully",

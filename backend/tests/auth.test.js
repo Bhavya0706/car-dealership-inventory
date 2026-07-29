@@ -53,3 +53,42 @@ describe("POST /api/auth/register", () => {
     });
 });
 
+describe("POST /api/auth/login", () => {
+    const userData = {
+        name: "Bhavya",
+        email: "bhavya@example.com",
+        password: "Password123"
+    };
+
+    beforeEach(async () => {
+        await request(app)
+            .post("/api/auth/register")
+            .send(userData);
+    });
+
+    test("should log in with valid credentials and return a JWT", async () => {
+        const response = await request(app)
+            .post("/api/auth/login")
+            .send({
+                email: userData.email,
+                password: userData.password
+            });
+
+        expect(response.statusCode).toBe(200);
+        expect(response.body.message).toBe("Login successful");
+        expect(response.body.token).toBeDefined();
+        expect(response.body.user.email).toBe(userData.email);
+    });
+
+    test("should reject login with an incorrect password", async () => {
+        const response = await request(app)
+            .post("/api/auth/login")
+            .send({
+                email: userData.email,
+                password: "WrongPassword123"
+            });
+
+        expect(response.statusCode).toBe(401);
+        expect(response.body.message).toBe("Invalid email or password");
+    });
+});
